@@ -1,0 +1,82 @@
+<ul class="nav justify-content-center grey lighten-4 py-4" style="background-color: blue !important;">
+  <li class="nav-item" >
+      <a class="nav-link active" href="#!" style="color: white !important;text-align: center;">
+        <span style="font-size: 20px;
+        font-family: sans-serif;">Covid-19 Updates</span><br>
+        <span style="font-size: 18px;
+        font-family: sans-serif;">Last refreshed at: </span> <span>{{lastUpdateTime | dateFormat}}</span>
+      </a>
+  </li>
+</ul>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="card" style="width: 100%;margin: 10px 0px;">            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="background: rgb(9,1,0);
+                background: linear-gradient(120deg, rgba(9,1,0,1) 0%, rgba(19,22,23,0.9528186274509804) 20%, rgba(0,32,170,1) 100%);
+                color: white;
+                text-align: center;font-size: 18px;
+                font-family: sans-serif;">
+                    <span>Total Confirmed Cases - </span> <span>{{totalSummary.total}}</span><br>
+                    <span>Indian - </span> <span>{{totalSummary.confirmedCasesIndian}}</span><br>
+                    <span>Foreigner - </span> <span>{{totalSummary.confirmedCasesForeign}}</span><br>
+                    <span>Deaths - </span> <span>{{totalSummary.deaths}}</span><br>
+                    <span>Discharged - </span> <span>{{totalSummary.discharged}}</span>
+                </li>                
+            </ul>
+          </div>
+    </div>
+  </div>
+  
+  <p style="text-align: center;  
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: blue;">State wise details</p>
+
+  <div class="row">
+    <div class="col-md-12">
+        <div id="accordion">
+            <div class="card" *ngFor="let state of stateDate;let i = index">
+              <div class="card-header" id="heading{{i}}" style="background: rgb(9,1,0);
+              background: linear-gradient(120deg, rgba(9,1,0,1) 0%, rgba(19,22,23,0.9528186274509804) 20%, rgba(0,32,170,1) 100%);
+              color: white;
+              text-align: center;">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="false" [attr.aria-controls]="'collapse'+i" style="color:white;font-size: 18px;
+                  font-family: sans-serif;">
+                    {{state.loc}}
+                  </button>
+                </h5>
+              </div>
+          
+              <div id="collapse{{i}}" class="collapse show" [attr.aria-labelledby]="'heading'+i" data-parent="#accordion">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="font-size: 18px;
+                        font-family: sans-serif;
+                        color: blue;">
+                            <span>Total Confirmed Cases - </span> <span>{{state.totalConfirmed}}</span><br>
+                            <span>Indian - </span> <span>{{state.confirmedCasesIndian}}</span><br>
+                            <span>Foreigner - </span> <span>{{state.confirmedCasesForeign}}</span>
+                        </li>
+                        <li class="list-group-item" style="font-size: 18px;
+                        font-family: sans-serif;
+                        color: blue;">
+                            <span>Deaths - </span> <span>{{state.deaths}}</span>
+                        </li>
+                        <li class="list-group-item" style="font-size: 18px;
+                        font-family: sans-serif;
+                        color: blue;">
+                            <span>Discharged - </span> <span>{{state.discharged}}</span>
+                        </li>
+                    </ul>
+                </div>
+              </div>
+            </div>            
+          </div>
+    </div> 
+</div>  
+
